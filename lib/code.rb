@@ -36,5 +36,27 @@ class Code
 
   def length
     @pegs.length
+  end 
+  
+  def num_exact_matches(guess_code)
+    count = 0
+    (0...guess_code.length).each do |i|
+      count += 1 if guess_code[i] == self[i]
+    end  
+     count
+  end  
+
+  def num_near_matches(guess_code)
+    count = 0
+    (0...guess_code.length).each do |i|
+      if guess_code[i] != self[i] && self.pegs.include?(guess_code[i])
+        count += 1
+      end  
+    end 
+    count
+  end  
+
+  def ==(guess_code)
+    guess_code == self.pegs
   end  
 end
